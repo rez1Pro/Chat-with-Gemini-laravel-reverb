@@ -22,11 +22,10 @@ echo.channel("chat").listen("OpenAIMessage", (e) => {
 document.getElementById("ai").addEventListener("submit", (e) => {
     e.preventDefault();
     let message = document.querySelector("input[name]").value;
-
+    document.getElementById("ai-ask").innerHTML = ""
     document.getElementById("ai-ask").innerHTML += `<span>${message}</span>`;
 
     axios.post("ask", { message }).then((response) => {
-        document.getElementById("ai-ask").innerHTML = ""
     }).catch((error) => {
         document.getElementById('error').innerHTML = error.response.data.message;
     });
